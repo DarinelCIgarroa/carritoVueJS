@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  
+      <div class="row">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6" v-for="producto in productos" :key="producto.id">
+                <productoComponent :producto="producto"></productoComponent>
+              </div>
+            </div>
+          </div>
+      </div>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import productoComponent from './components/productoComponent'
+import productos from './productos'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    productoComponent
+  },
+  data(){
+    return{
+      productos
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
