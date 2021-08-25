@@ -7,8 +7,8 @@
         <p class="card-text">
           Producto a precio rebajado
         </p>
-        <p>{{ producto.precio }}</p>
-        <a href="#" class="btn btn-primary form-control">Agregar al carrito</a>
+        <p text-muted>{{ producto.precio }}</p>
+        <button class="btn btn-primary form-control" @click.prevent="addcarrito(producto)" :disabled="estaEnCarrito">Agregar al carrito</button>
       </div>
     </div>
   </div>
@@ -19,7 +19,13 @@
 export default {
   name: "productoComponent",
   props:{
-    producto: Object
+    producto: Object,
+    estaEnCarrito: Boolean
+  },
+  methods:{
+    addcarrito(value){
+      this.$emit('addProducto', value)
+    }
   }
 };
 </script>
