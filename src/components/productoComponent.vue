@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="card" style="width: 18rem">
       <img :src="producto.imagen" width="250" height="150" class="card-img-top" alt="#" />
       <div class="card-body">
@@ -11,7 +10,6 @@
         <button class="btn btn-primary form-control" @click.prevent="addcarrito(producto)" :disabled="estaEnCarrito">Agregar al carrito</button>
       </div>
     </div>
-  </div>
 </template>
 
 
