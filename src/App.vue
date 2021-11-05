@@ -1,73 +1,63 @@
 <template>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        <div
-          class="col-md-8 content-products"
-          v-for="producto in productos"
-          :key="producto.id"
-        >
-          <productoComponent
-            :producto="producto"
-            :estaEnCarrito="estaEnCarrito(producto)"
-            @addProducto="sendProduct"
-          ></productoComponent>
-        </div>
+  <div class="container">
+    <div class="row">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-6 content-products" v-for="producto in productos" :key="producto.id" >
+                <productoComponent :producto="producto" :estaEnCarrito="estaEnCarrito(producto)" @addProducto="sendProduct" ></productoComponent>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 my-5">
+            <carritoComponent :listcar="listaProductos" @deleteProducto="deleteProduct" @pagarProduct="pagarToltal"></carritoComponent>
+          </div>
       </div>
-    </div>
-    <div class="col-md-5 my-5">
-      <carritoComponent
-        :listcar="listaProductos"
-        @deleteProducto="deleteProduct"
-        @pagarProduct="pagarToltal"
-      ></carritoComponent>
-    </div>
+  
   </div>
 </template>
 
 <script>
-import productoComponent from "./components/productoComponent";
-import carritoComponent from "./components/carritoComponent";
-import productos from "./productos";
+import productoComponent  from './components/productoComponent'
+import carritoComponent   from './components/carritoComponent'
+import productos from './productos'
 export default {
-  name: "App",
+  name: 'App',
   components: {
     productoComponent,
-    carritoComponent,
+    carritoComponent
   },
-  data() {
-    return {
+  data(){
+    return{
       productos,
-      listaProductos: [],
-    };
+      listaProductos: []
+    }
   },
-  methods: {
-    sendProduct(value) {
-      this.listaProductos.push(value);
+  methods:{
+    sendProduct(value){
+      this.listaProductos.push(value)
       // console.log(value.titulo)
     },
-    deleteProduct(value) {
-      this.listaProductos = this.listaProductos.filter(
-        (item) => item.id != value.id
-      );
+    deleteProduct(value){
+      this.listaProductos = this.listaProductos.filter(item => item.id != value.id)
     },
-    estaEnCarrito(producto) {
-      const item = this.listaProductos.find((item) => item.id === producto.id);
-      if (item) {
-        return true;
+    estaEnCarrito(producto){
+      const item = this.listaProductos.find(item => item.id === producto.id);
+      if(item){
+        return true
       }
-      return false;
+      return false
     },
-    pagarToltal() {
-      alert("Gracias por su compra");
-      this.listaProductos = [];
-    },
-  },
-};
+    pagarToltal(){
+      alert('Gracias por su compra')
+      this.listaProductos=[]
+    }
+  }
+}
 </script>
 
 <style>
-.content-products {
+.content-products{
   display: flex;
   justify-content: center;
   align-items: center;
